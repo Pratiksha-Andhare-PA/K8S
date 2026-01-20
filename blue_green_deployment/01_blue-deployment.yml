@@ -32,7 +32,7 @@ spec:
       containers:
         - name: javawebapp
 
-          image: pratiksha1402/java-web-app:v1
+          image: pratiksha1402/java-web-app:1.0
 
           imagePullPolicy: Always
 
