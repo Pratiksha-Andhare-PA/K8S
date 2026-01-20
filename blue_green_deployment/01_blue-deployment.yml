@@ -1,0 +1,43 @@
+---
+
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: javawebapp-blue
+
+  labels:
+    app: java-web-app
+    color: blue
+
+spec:
+  replicas: 2
+
+  strategy:
+    type: RollingUpdate
+
+  selector:
+    matchLabels:
+      app: java-web-app
+      color: blue
+
+  template:
+    metadata:
+      labels:
+        app: java-web-app
+        color: blue
+
+    spec:
+      containers:
+        - name: javawebapp
+
+          image: pratiksha1402/java-web-app:v1
+
+          imagePullPolicy: Always
+
+          ports:
+          - containerPort: 8080
+
+...
+
