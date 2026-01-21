@@ -5,10 +5,10 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: javawebapp-green
+  name: bluegreenapp-green
 
   labels:
-    app: java-web-app
+    app: bluegreen-app
     color: green
 
 spec:
@@ -19,20 +19,20 @@ spec:
 
   selector:
     matchLabels:
-      app: java-web-app
+      app: bluegreen-app
       color: green
 
   template:
     metadata:
       labels:
-        app: java-web-app
+        app: bluegreen-app
         color: green
 
     spec:
       containers:
-        - name: javawebapp
+        - name: bluegreenapp
 
-          image: pratiksha1402/java-web-app:1.0
+          image: pratiksha1402/bluegreen-app:v1
 
           imagePullPolicy: Always
 
