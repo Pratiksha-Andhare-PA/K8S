@@ -9,12 +9,13 @@ This project demonstrates a **Blue-Green Deployment strategy** using **Kubernete
 - [What is Blue-Green Deployment?](#-what-is-blue-green-deployment)
 - [Technologies Used](#-technologies-used)
 - [Project Structure](#-project-structure)
-- [Step 1: Apply Kubernetes Manifests](#-step-1-apply-kubernetes-manifests)
-- [Step 2: Verify Pods](#-step-2-verify-pods)
-- [Step 3: Verify Services](#-step-3-verify-services)
-- [Step 4: Before Switch (Blue Live, Green Pre-Prod)](#-step-4-before-switch-blue-live-green-pre-prod)
-- [Step 5: Switch Live Traffic (Blue → Green)](#-step-5-switch-live-traffic-blue--green)
-- [Step 6: After Switch Verification](#-step-6-after-switch-verification)
+- [Step 1: Apply Blue Deployment and Live Service](#-step-1-apply-blue-deployment-and-live-service)
+- [Step 2: Verify Blue Pods and Services](#-step-2-verify-blue-pods-and-services)
+- [Step 3: Verify Live Service Routing (Blue Active)](#-step-3-verify-live-service-routing-blue-active)
+- [Step 4: Apply Green Deployment and Pre-Prod Service](#-step-4-apply-green-deployment-and-pre-prod-service)
+- [Step 5: Verify Pre-Prod Service Routing](#-step-5-verify-pre-prod-service-routing)
+- [Step 6: Switch Live Service Selector (Blue → Green)](#-step-6-switch-live-service-selector-blue--green)
+- [Step 7: Verify Live Service Routing (Green Active)](#-step-7-verify-live-service-routing-green-active)
 - [Rollback (Green → Blue)](#-rollback-green--blue)
 - [Conclusion](#-conclusion)
 
@@ -24,10 +25,10 @@ This project demonstrates a **Blue-Green Deployment strategy** using **Kubernete
 
 Blue-Green Deployment is a release strategy where two identical environments exist:
 
-- **Blue** → Current production (live)
-- **Green** → New version (pre-production)
+- **Blue** → Current production version
+- **Green** → New release version
 
-Traffic is switched between environments by updating the **Kubernetes Service selector**, ensuring **zero downtime** and **instant rollback**.
+Traffic is switched between environments by updating the **Live Kubernetes Service selector**, ensuring **zero downtime** and **instant rollback**.
 
 ---
 
@@ -54,35 +55,35 @@ Traffic is switched between environments by updating the **Kubernetes Service se
 
 ---
 
-## 🚀 Step 1: Apply Kubernetes Manifests
+## 🚀 Step 1: Apply Blue Deployment and Live Service
 
 ### Deploy Blue Environment
 
-```
+```<cmd>
 kubectl apply -f 01_blue_deploy.yml
 ```
 
-### Expose Blue as Live using LoadBalancer
+### Create Live Service
 
-```
+```<cmd>
 kubectl apply -f 02_live_service.yml
 ```
 
 ---
 
-## 🔍 Step 2: Verify Pods
+## 🔍 Step 2: Verify Blue Pods and Services
 
-```
+### Verify Pods
+
+```<cmd>
 kubectl get pods
 ```
 
 📸 Evidence: screenshots/blue_pods_running.png
 
----
+### Verify Services
 
-## 🌐 Step 3: Verify Services
-
-```
+```<cmd>
 kubectl get svc
 ```
 
@@ -90,43 +91,45 @@ kubectl get svc
 
 ---
 
-## 🔵 Step 4: Before Switch (Blue Live, Green Pre-Prod)
-
-### Access Blue (Live)
+## 🌐 Step 3: Verify Live Service Routing (Blue Active)
 
 ```text
-http://<LOAD_BALANCER_IP>/bluegreen-app
+http://<LIVE_SERVICE_ENDPOINT>/bluegreen-app
 ```
 
-📸 Evidence: screenshots/blue_live_lb.png
+📸 Evidence: screenshots/live_service_blue_active.png
 
 ---
 
+## 🟢 Step 4: Apply Green Deployment and Pre-Prod Service
+
 ### Deploy Green Environment
 
-```
+```<cmd>
 kubectl apply -f 03_green_deploy.yml
 ```
 
-### Expose Green via NodePort (Pre-Prod)
+### Create Pre-Prod Service
 
 ```<cmd>
 kubectl apply -f 04_preprod_service.yml
 ```
 
-### Access Green (Pre-Prod)
+---
+
+## 🔵 Step 5: Verify Pre-Prod Service Routing
 
 ```text
-http://<NODE_IP>:31785/bluegreen-app
+http://<PREPROD_SERVICE_ENDPOINT>/bluegreen-app
 ```
 
-📸 Evidence: screenshots/green_preprod_nodeport.png
+📸 Evidence: screenshots/preprod_service_blue_active.png
 
 ---
 
-## 🔄 Step 5: Switch Live Traffic (Blue → Green)
+## 🔄 Step 6: Switch Live Service Selector (Blue → Green)
 
-Update selector in live service:
+### Update selector in live service
 
 ```yaml
 selector:
@@ -134,7 +137,9 @@ selector:
   color: green
 ```
 
-Apply changes:
+📸 Evidence: screenshots/live_service_selector_change.png
+
+### Apply updated configuration
 
 ```<cmd>
 kubectl apply -f 02_live_service.yml
@@ -142,13 +147,13 @@ kubectl apply -f 02_live_service.yml
 
 ---
 
-## ✅ Step 6: After Switch Verification
+## ✅ Step 7: Verify Live Service Routing (Green Active)
 
 ```text
-http://<LOAD_BALANCER_IP>/bluegreen-app
+http://<LIVE_SERVICE_ENDPOINT>/bluegreen-app
 ```
 
-📸 Evidence: screenshots/green_live_lb.png
+📸 Evidence: screenshots/live_service_green_active.png
 
 ---
 
@@ -168,4 +173,6 @@ kubectl apply -f 02_live_service.yml
 
 ## 🎯 Conclusion
 
-This project demonstrates a **production-grade Blue-Green Deployment** using Kubernetes with zero downtime and instant rollback.
+This project demonstrates a **production-grade Blue-Green Deployment** using Kubernetes with controlled traffic switching, zero downtime, and instant rollback.
+
+---
