@@ -79,15 +79,16 @@ kubectl apply -f 02_live_service.yml
 kubectl get pods
 ```
 
-📸 Evidence: screenshots/blue_pods_running.png
+📸 Evidence:
+
+<img width="940" height="167" alt="image" src="https://github.com/user-attachments/assets/db81058f-80e2-44a1-8cf2-6cc0b9396033" />
+
 
 ### Verify Services
 
 ```<cmd>
 kubectl get svc
 ```
-
-📸 Evidence: screenshots/services_list.png
 
 ---
 
@@ -97,7 +98,10 @@ kubectl get svc
 http://<LIVE_SERVICE_ENDPOINT>/bluegreen-app
 ```
 
-📸 Evidence: screenshots/live_service_blue_active.png
+📸 Evidence:
+
+<img width="940" height="710" alt="image" src="https://github.com/user-attachments/assets/10cacbae-af6e-4b4b-b6ee-18be2038d7d5" />
+
 
 ---
 
@@ -109,11 +113,33 @@ http://<LIVE_SERVICE_ENDPOINT>/bluegreen-app
 kubectl apply -f 03_green_deploy.yml
 ```
 
+### Verify Pods
+
+```<cmd>
+kubectl get pods
+```
+
+📸 Evidence:
+
+<img width="940" height="213" alt="image" src="https://github.com/user-attachments/assets/a7e261e7-b9ce-4216-ac29-597325995403" />
+
+
 ### Create Pre-Prod Service
 
 ```<cmd>
 kubectl apply -f 04_preprod_service.yml
 ```
+
+### Verify Services
+
+```<cmd>
+kubectl get svc
+```
+
+Evidence:
+
+<img width="940" height="224" alt="image" src="https://github.com/user-attachments/assets/8630ea0c-1064-4b0a-9c9d-59df516912c6" />
+
 
 ---
 
@@ -123,7 +149,10 @@ kubectl apply -f 04_preprod_service.yml
 http://<PREPROD_SERVICE_ENDPOINT>/bluegreen-app
 ```
 
-📸 Evidence: screenshots/preprod_service_blue_active.png
+📸 Evidence:
+
+<img width="940" height="805" alt="image" src="https://github.com/user-attachments/assets/a3559791-8943-4379-a206-3fe6c2ae92b4" />
+
 
 ---
 
@@ -137,7 +166,10 @@ selector:
   color: green
 ```
 
-📸 Evidence: screenshots/live_service_selector_change.png
+📸 Evidence
+
+<img width="593" height="449" alt="image" src="https://github.com/user-attachments/assets/73f52c89-8245-47ce-a49d-fe71f259f25c" />
+
 
 ### Apply updated configuration
 
@@ -154,6 +186,9 @@ http://<LIVE_SERVICE_ENDPOINT>/bluegreen-app
 ```
 
 📸 Evidence: screenshots/live_service_green_active.png
+
+<img width="940" height="540" alt="image" src="https://github.com/user-attachments/assets/f0c3e1eb-b1c6-4658-b95e-272ecac5d7be" />
+
 
 ---
 
