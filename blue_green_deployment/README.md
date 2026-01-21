@@ -100,7 +100,7 @@ http://<LIVE_SERVICE_ENDPOINT>/bluegreen-app
 
 📸 Evidence:
 
-<img width="940" height="710" alt="image" src="https://github.com/user-attachments/assets/10cacbae-af6e-4b4b-b6ee-18be2038d7d5" />
+<img width="940" height="277" alt="image" src="https://github.com/user-attachments/assets/bdb7a1eb-101e-42e1-b677-c1c4142d9371" />
 
 
 ---
@@ -151,7 +151,7 @@ http://<PREPROD_SERVICE_ENDPOINT>/bluegreen-app
 
 📸 Evidence:
 
-<img width="940" height="805" alt="image" src="https://github.com/user-attachments/assets/a3559791-8943-4379-a206-3fe6c2ae92b4" />
+<img width="940" height="291" alt="image" src="https://github.com/user-attachments/assets/5e6d3e69-044b-461b-8fb8-126610c69e6b" />
 
 
 ---
@@ -187,7 +187,7 @@ http://<LIVE_SERVICE_ENDPOINT>/bluegreen-app
 
 📸 Evidence: screenshots/live_service_green_active.png
 
-<img width="940" height="540" alt="image" src="https://github.com/user-attachments/assets/f0c3e1eb-b1c6-4658-b95e-272ecac5d7be" />
+<img width="940" height="246" alt="image" src="https://github.com/user-attachments/assets/873054a3-be2a-465b-9a8c-c96f052fb96d" />
 
 
 ---
