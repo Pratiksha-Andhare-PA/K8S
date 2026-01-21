@@ -78,8 +78,6 @@ kubectl get pods
 
 📸 Evidence: screenshots/blue_pods_running.png
 
-<img width="940" height="167" alt="image" src="https://github.com/user-attachments/assets/bfe7014a-5dc7-4c53-9bff-fb1f535b7e8c" />
-
 
 ---
 
